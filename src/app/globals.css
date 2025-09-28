@@ -1,26 +1,130 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #050012;
   --foreground: #171717;
+  --primary-color: #050012;
+  --seccondary-color: #6f33ff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Sora", Sans-serif;
+}
+
+
+@keyframes gradient-x {
+  0% {
+    scale: 1;
+  }
+  50% {
+    scale: 2;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
+.animate-gradient-x {
+  animation: gradient-x 10s ease-in-out infinite;
+}
+
+@keyframes gradient-translateY {
+  0% {
+    transform: translate(-450px, -450px);
+  }
+  100% {
+    transform: translate(3000px, 700px);
+  }
+}
+
+.animate-gradient-translateY {
+  animation: gradient-translateY 20s linear infinite;
+}
+
+@keyframes gradient-translateX {
+  0% {
+    transform: translate(-400px, -400px);
+  }
+  100% {
+    transform: translate(1900px, 1200px);
+  }
+}
+
+.animate-gradient-translateX {
+  animation: gradient-translateX 25s linear infinite;
+}
+
+@keyframes gradient-translateUp {
+  0% {
+    transform: translate(550px, 550px);
+  }
+  100% {
+    transform: translate(-1200px, -1900px);
+  }
+}
+
+.animate-gradient-translateUp {
+  animation: gradient-translateUp 40s linear infinite;
+}
+
+@keyframes gradient-translateDown {
+  0% {
+    transform: translate(-600px, -600px);
+  }
+  100% {
+    transform: translate(1000px, 1000px);
+  }
+}
+
+.animate-gradient-translateDown {
+  animation: gradient-translateDown 40s linear infinite;
+}
+
+@keyframes logoEntrada {
+  0% {
+
+    opacity: 0;
+  }
+  50% {
+
+    opacity: 1;
+  }
+  100% {
+
+    opacity: 0;
+  }
+}
+
+.animate-logoEntrada {
+  animation: logoEntrada 4s linear forwards;
+}
+
+@keyframes ToUp {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  50%{
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  80%{
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+.animate-ToUp {
+  animation: ToUp 5s linear forwards;
 }
