@@ -1,12 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import api from "@/lib/api";
+
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 export default function Dashboard() {
   const [sites, setSites] = useState([]);
   const router = useRouter();
+  
+      const api = axios.create({
+  baseURL: "https://backend-statushub.onrender.com/api", // backend Node
+});
 
   useEffect(() => {
     const fetchSites = async () => {
