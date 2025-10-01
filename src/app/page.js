@@ -2,21 +2,21 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import api from "../lib/api"; // seu axios configurado
 
 export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    const token = document.cookie
-      .split("; ")
-      .find((row) => row.startsWith("token="))
-      ?.split("=")[1];
-
-    if (token) {
-      router.push("/dashboard");
-    } else {
-      router.push("/login");
-    }
+    const checkAuth = async () => {
+      try {
+        await api.get("/auth/me", { withCredentials: true });
+        router.push("/dashboard");
+      } catch {
+        router.push("/login");
+      }
+    };
+    checkAuth();
   }, [router]);
 
   return <p>Carregando...</p>;
