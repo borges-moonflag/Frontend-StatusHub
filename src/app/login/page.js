@@ -2,19 +2,16 @@
 
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import axios from "axios";
+import api from "../../lib/api";
 
 export default function LoginPage() {
     const { register, handleSubmit } = useForm();
     const router = useRouter();
-
-    const api = axios.create({
-  baseURL: "https://backend-statushub.onrender.com/api", // backend Node
-});
-
 const onSubmit = async (data) => {
   try {
     await api.post("/auth/login", data, { withCredentials: true });
+    console.log("Resposta do login:", res.data);
+    console.log("Cookie atual:", document.cookie);
     router.push("/dashboard");
   } catch (err) {
     alert("Erro ao logar");

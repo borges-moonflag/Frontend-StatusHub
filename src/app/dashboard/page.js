@@ -1,4 +1,5 @@
 "use client";
+"use client";
 
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -7,40 +8,15 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Dashboard() {
-  const { loading, authenticated, user } = useAuth();
-  const [sites, setSites] = useState([]);
+
+    const { loading, authenticated, user } = useAuth();
   const router = useRouter();
 
-
-  const api = axios.create({
-    baseURL: "https://backend-statushub.onrender.com/api",
-  });
-
-  useEffect(() => {
-    const fetchSites = async () => {
-      const token = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("token="))
-        ?.split("=")[1];
-
-      if (!token) return;
-
-      const res = await api.get("/sites", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      setSites(res.data);
-    };
-    fetchSites();
-  }, []);
-
-  const handleLogout = () => {
-    Cookies.remove("token", { path: "/" });
+  if (loading) return <p>Carregando...</p>;
+  if (!authenticated) {
     router.push("/login");
-  };
-
-  if (loading) return null;
-  if (!authenticated) return null;
+    return null;
+  }
 
   return (
     <main className="p-6">

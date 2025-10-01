@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://backend-statushub.onrender.com/api", // backend Node
+  baseURL: "http://localhost:6030/api",
+  withCredentials: true,
 });
 
 export default api;
