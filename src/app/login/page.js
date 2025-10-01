@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import api from "../../lib/api";
 
-export default function LoginPage() {
+export default async function LoginPage() {
     const { register, handleSubmit } = useForm();
     const router = useRouter();
 const onSubmit = async (data) => {
@@ -28,6 +28,10 @@ const onSubmit = async (data) => {
     alert("Erro ao logar");
   }
 };
+
+const res = await fetch("/api/health");
+const data = await res.json();
+console.log(data);
 
     return (
         <main className="flex min-h-screen items-center justify-center bg-[url('/background-moonflag.png')] relative overflow-hidden">
