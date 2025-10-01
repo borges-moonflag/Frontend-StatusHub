@@ -9,11 +9,22 @@ export default function LoginPage() {
     const router = useRouter();
 const onSubmit = async (data) => {
   try {
+    // faz o login
     await api.post("/auth/login", data, { withCredentials: true });
-    console.log("Resposta do login:", res.data);
-    console.log("Cookie atual:", document.cookie);
-    router.push("/dashboard");
+
+    // verifica se o login deu certo
+    const res = await api.get("/auth/me", { withCredentials: true });
+
+    if (res.data) {
+      // se quiser salvar info do usuário no front (opcional)
+      localStorage.setItem("user", JSON.stringify(res.data));
+      router.push("/dashboard");
+    } else {
+      alert("Falha ao validar usuário");
+    }
+
   } catch (err) {
+    console.log(err);
     alert("Erro ao logar");
   }
 };
