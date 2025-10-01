@@ -3,6 +3,7 @@
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import api from "../../lib/api";
+import { useEffect } from "react";
 
 export default function LoginPage() {
     const { register, handleSubmit } = useForm();
@@ -29,12 +30,14 @@ const onSubmit = async (data) => {
   }
 };
 
-    const FetchApiTeste  = async () => {
-    const res = await fetch("/api/test");
-    const data = await res.json();
-    console.log(data);
- }
- FetchApiTeste()
+  useEffect(() => {
+    const fetchApiTeste = async () => {
+      const res = await fetch("/api/test");
+      const data = await res.json();
+      console.log(data);
+    };
+    fetchApiTeste();
+  }, []);
 
     return (
         <main className="flex min-h-screen items-center justify-center bg-[url('/background-moonflag.png')] relative overflow-hidden">
