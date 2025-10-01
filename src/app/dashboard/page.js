@@ -4,14 +4,20 @@ import { useEffect, useState } from "react";
 
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import Cookies from "js-cookie";
+import useAuth from "../hook/useAuth";
 
 export default function Dashboard() {
+  const { loading, authenticated, user } = useAuth();
   const [sites, setSites] = useState([]);
   const router = useRouter();
-  
-      const api = axios.create({
-  baseURL: "https://backend-statushub.onrender.com/api", // backend Node
-});
+
+  if (loading) return null;
+  if (!authenticated) return null;
+
+  const api = axios.create({
+    baseURL: "https://backend-statushub.onrender.com/api",
+  });
 
   useEffect(() => {
     const fetchSites = async () => {
@@ -32,12 +38,10 @@ export default function Dashboard() {
   }, []);
 
   const handleLogout = () => {
-    // Apaga o cookie
-    document.cookie =
-      "token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-
-    router.push("/auth/login");
+    Cookies.remove("token", { path: "/" });
+    router.push("/login");
   };
+
 
   return (
     <main className="p-6">

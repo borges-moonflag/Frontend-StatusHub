@@ -13,9 +13,9 @@ export default function Home() {
       ?.split("=")[1];
 
     if (token) {
-      router.push("/dashboard"); // se logado vai pro dashboard
+      router.push("/dashboard");
     } else {
-      router.push("/auth/login"); // se não logado vai pro login
+      router.push("/login");
     }
   }, [router]);
 

@@ -12,18 +12,14 @@ export default function LoginPage() {
   baseURL: "https://backend-statushub.onrender.com/api", // backend Node
 });
 
-    const onSubmit = async (data) => {
-        try {
-          const res = await api.post("/auth/login", data);
-
-          // salva o token em cookie
-          document.cookie = `token=${res.data.token}; path=/;`;
-
-          router.push("/dashboard");
-        } catch (err) {
-          alert("Erro ao logar");
-        }
-    };
+const onSubmit = async (data) => {
+  try {
+    await api.post("/auth/login", data, { withCredentials: true });
+    router.push("/dashboard");
+  } catch (err) {
+    alert("Erro ao logar");
+  }
+};
 
     return (
         <main className="flex min-h-screen items-center justify-center bg-[url('/background-moonflag.png')] relative overflow-hidden">
