@@ -11,7 +11,7 @@ export default function useAuth() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await api.get("/auth/me");
+        const res = await api.get("/auth/me", { withCredentials: true });
         setUser(res.data.user);
         setAuthenticated(true);
       } catch (err) {
