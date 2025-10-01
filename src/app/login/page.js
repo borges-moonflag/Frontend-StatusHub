@@ -30,15 +30,6 @@ const onSubmit = async (data) => {
   }
 };
 
-  useEffect(() => {
-    const fetchApiTeste = async () => {
-      const res = await fetch("/api/health");
-      const data = await res.json();
-      console.log(data);
-    };
-    fetchApiTeste();
-  }, []);
-
     return (
         <main className="flex min-h-screen items-center justify-center bg-[url('/background-moonflag.png')] relative overflow-hidden">
             <div>

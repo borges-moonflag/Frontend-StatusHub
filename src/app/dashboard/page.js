@@ -16,14 +16,23 @@ export default function Dashboard() {
     return null;
   }
 
-  const handleLogout = async () => {
-    try {
-      await api.post("/auth/logout");
-      router.push("/login"); // redireciona após logout
-    } catch (err) {
-      console.error("Erro ao deslogar:", err);
+const handleLogout = async () => {
+  try {
+    // Chama o endpoint de logout
+    const res = await api.post("/auth/logout", {}, { withCredentials: true });
+
+    // Só redireciona se o backend confirmou que o cookie foi removido
+    if (res.data.message === "Logout realizado com sucesso") {
+      console.log("Token removido do cookie com sucesso!");
+      router.push("/login");
+    } else {
+      console.error("Logout não confirmado pelo backend");
     }
-  };
+  } catch (err) {
+    console.error("Erro ao deslogar:", err);
+  }
+};
+
 
   return (
     <main className="p-6">
