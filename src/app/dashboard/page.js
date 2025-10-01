@@ -1,10 +1,9 @@
 "use client";
 
-import axios from "axios";
-import Cookies from "js-cookie";
 import useAuth from "../hook/useAuth";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import api from "../../lib/api";
 
 export default function Dashboard() {
 
