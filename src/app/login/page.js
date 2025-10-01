@@ -32,7 +32,7 @@ const onSubmit = async (data) => {
 
   useEffect(() => {
     const fetchApiTeste = async () => {
-      const res = await fetch("/api/test");
+      const res = await fetch("/api/health");
       const data = await res.json();
       console.log(data);
     };
