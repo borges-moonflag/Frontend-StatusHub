@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 export default function Dashboard() {
 
-    const { loading, authenticated, user } = useAuth();
+  const { loading, authenticated, user } = useAuth();
   const router = useRouter();
 
   if (loading) return <p>Carregando...</p>;
@@ -17,6 +17,15 @@ export default function Dashboard() {
     router.push("/login");
     return null;
   }
+
+  const handleLogout = async () => {
+    try {
+      await api.post("/auth/logout");
+      router.push("/login"); // redireciona após logout
+    } catch (err) {
+      console.error("Erro ao deslogar:", err);
+    }
+  };
 
   return (
     <main className="p-6">
