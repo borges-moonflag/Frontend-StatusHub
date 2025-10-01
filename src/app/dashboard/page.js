@@ -11,8 +11,6 @@ export default function Dashboard() {
   const [sites, setSites] = useState([]);
   const router = useRouter();
 
-  if (loading) return null;
-  if (!authenticated) return null;
 
   const api = axios.create({
     baseURL: "https://backend-statushub.onrender.com/api",
@@ -41,6 +39,8 @@ export default function Dashboard() {
     router.push("/login");
   };
 
+  if (loading) return null;
+  if (!authenticated) return null;
 
   return (
     <main className="p-6">
