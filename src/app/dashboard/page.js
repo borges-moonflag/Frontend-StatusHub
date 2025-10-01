@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
-import { useRouter } from "next/navigation";
 import axios from "axios";
 import Cookies from "js-cookie";
 import useAuth from "../hook/useAuth";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Dashboard() {
   const { loading, authenticated, user } = useAuth();
