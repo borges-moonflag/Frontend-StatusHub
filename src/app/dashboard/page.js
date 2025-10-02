@@ -21,7 +21,7 @@ export default function Dashboard() {
   if (!authenticated) return null;
 
   return (
-    <section className="w-dvw h-dvh bg-white">
+    <section className="w-dvw h-dvh bg-[var(--background)]">
       <main className="p-6">
         {/* Navbar já traz o botão de sair */}
         <Navbar />
